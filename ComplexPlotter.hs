@@ -1,10 +1,9 @@
 module ComplexPlotter where
 
-import System.IO()
 import Data.Complex
+import Data.Maybe()
+import System.IO()
 import Graphics.Gnuplot.Simple
-import System.Random()
-
 -- Converts a number to a complex number
 toComplex n = n :+ 0
 
@@ -45,15 +44,23 @@ complexPoly _ = i
 complexPoly2 z = cadd ((two `cmul` z) `cadd` two) (cmul two (square z))
 
 main f = do
-  putStr "Step size: "
-  ss <- readLn :: IO Double
-  putStr "a: "
-  a <- readLn :: IO Double
-  putStr "b: "
-  b <- readLn :: IO Double
-  let grid = [a,a+ss..b] in
-        plotMesh3d [] [] $ do
-                           x <- grid;
-                           return $ do
-                                    y <- grid;
-                                    return $ (x, y, magnitude $ f (x :+ y))
+          putStr "Step size: "
+          ss <- readLn :: IO Double
+          putStr "a: "
+          a <- readLn :: IO Double
+          putStr "b: "
+          b <- readLn :: IO Double
+          -- Discrete set of points spanned by (a, b)
+          let axis = [a,a+ss..b]
+          let phases = map phase $ map f [(x :+ y) | x <- axis, y <- axis] -- color
+
+          writeFile "data.txt" (foldr (++) "" $ map (++"\n\n") $ map show $ phases)
+
+          plotMesh3d [Grid (Just [""]),
+                      XLabel "Real(x)",
+                      ZLabel "|f(x)|",
+                      YLabel "Imag(x)"] []
+                      (do x <- axis;
+                          return $ do
+                                  y <- axis
+                                  return $ (x, y, magnitude $ f (x :+ y)))
