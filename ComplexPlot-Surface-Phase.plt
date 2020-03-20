@@ -42,7 +42,7 @@ set tics back
 set grid nopolar
 set grid xtics nomxtics ytics nomytics noztics nomztics nortics nomrtics \
  nox2tics nomx2tics noy2tics nomy2tics nocbtics nomcbtics
-set grid layerdefault   lt 0 linecolor 0 linewidth 0.500 dashtype solid,  lt 0 linecolor 0 linewidth 0.500 dashtype solid
+set grid layerdefault   lt 0 linecolor 0 linewidth 0.500,  lt 0 linecolor 0 linewidth 0.500
 unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
@@ -68,7 +68,7 @@ unset parametric
 unset decimalsign
 unset micro
 unset minussign
-set view 131, 121, 1, 1
+set view 73, 329, 1, 1
 set view azimuth 0
 set rgbmax 255
 set samples 100, 100
@@ -137,7 +137,7 @@ set y2label ""
 set y2label  font "" textcolor lt -1 rotate
 set yrange [ * : * ] noreverse writeback
 set y2range [ * : * ] noreverse writeback
-set zlabel "|f(x)|" 
+set zlabel "Arg(x)" 
 set zlabel  font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse writeback
 set cblabel "" 
@@ -171,5 +171,5 @@ GNUTERM = "wxt"
 data = "data.txt"
 ticslevel = 0
 ## Last datafile plotted: "data.txt"
-splot data u 1:2:3:4 with points palette
+splot data u 1:2:4:3 with points pointtype 28 lw 5 palette notitle
 #    EOF
