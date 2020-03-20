@@ -4,6 +4,7 @@ import Data.Complex
 import Data.Maybe()
 import System.IO()
 import Graphics.Gnuplot.Simple
+
 -- Converts a number to a complex number
 toComplex n = n :+ 0
 
@@ -59,7 +60,8 @@ main f = do
           plotMesh3d [Grid (Just [""]),
                       XLabel "Real(x)",
                       ZLabel "|f(x)|",
-                      YLabel "Imag(x)"] []
+                      YLabel "Imag(x)",
+                      Custom "zzeroaxis" []] []
                       (do x <- axis;
                           return $ do
                                   y <- axis
