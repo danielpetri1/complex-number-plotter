@@ -168,11 +168,8 @@ set fontpath
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "wxt"
-data = "data.txt"
+data = "../data.txt"
 ticslevel = 0
 ## Last datafile plotted: "data.txt"
 splot data u 1:2:3:4 with points pointtype 28 lw 5 palette notitle
-set term png size 1920,1080
-set output "output.png"
-replot
 #    EOF

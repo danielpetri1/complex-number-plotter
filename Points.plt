@@ -125,19 +125,19 @@ set timestamp  font "" textcolor lt -1 norotate
 set trange [ * : * ] noreverse nowriteback
 set urange [ * : * ] noreverse nowriteback
 set vrange [ * : * ] noreverse nowriteback
-set xlabel "Real(x)" 
+##set xlabel "Real(x)" 
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
 set xrange [ * : * ] noreverse writeback
 set x2range [ * : * ] noreverse writeback
-set ylabel "Imag(x)" 
+##set ylabel "Imag(x)" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
 set yrange [ * : * ] noreverse writeback
 set y2range [ * : * ] noreverse writeback
-set zlabel "|f(x)|" 
+##set zlabel "|f(x)|" 
 set zlabel  font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse writeback
 set cblabel "" 
@@ -171,6 +171,9 @@ GNUTERM = "wxt"
 data = "data.txt"
 ticslevel = 0
 ## Last datafile plotted: "data.txt"
+unset tics
+unset colorbox
+unset border
 splot data u 1:2:3:4 with points palette notitle
 set term png size 1920,1080
 set output "pics/output.png"
