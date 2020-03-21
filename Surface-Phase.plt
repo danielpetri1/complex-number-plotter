@@ -174,7 +174,7 @@ ticslevel = 0
 unset tics
 unset colorbox
 unset border
-splot data u 1:2:4:3 with points pointtype 28 lw 5 palette notitle
+splot data u 1:2:4:3 with points pointtype 7 lw 4 palette notitle
 set term png size 1920,1080
 set output "pics/output.png"
 replot

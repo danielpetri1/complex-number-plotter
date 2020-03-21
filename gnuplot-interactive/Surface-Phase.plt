@@ -171,5 +171,5 @@ GNUTERM = "wxt"
 data = "../data.txt"
 ticslevel = 0
 ## Last datafile plotted: "data.txt"
-splot data u 1:2:4:3 with points pointtype 28 lw 5 palette notitle
+splot data u 1:2:4:3 with points pointtype 7 lw 4 palette notitle
 #    EOF

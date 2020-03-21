@@ -46,24 +46,42 @@ plot f ss a b = do
 
           writeFile "data.txt" $ foldr (++) "" $ map format graph
 
-          gnuplot <- callCommand "gnuplot \"Surface-Magnitude.plt\""
+          gnuplot <- callCommand "gnuplot \"Surface-Phase.plt\""
           return gnuplot
 
 {--
 Changes the parameter c of a complex function f(x) + c in the interval [a, b] with a given
 stepsize ss.
 
-The method returns a list all functions where c set according to the interval above.
+The method returns a list all functions where c is set according to the interval above.
 --}
 
 functionList ss a b = [cPlus c | c <- [a, a+ss..b]]
 
--- TODO
--- delete folder content before starting
--- true main function, sanitize input
+{--
+
+This method gets a lists of functions and from that generates frames that get encoded into a video
+
+Default parameters:
+Function: square
+Step Size: 0.125
+Interval: [-10, 10]
+
+Change according to your needs in the function below.
+
+Example of how to run the function:
+
+*> animate $ functionList 1 (-25) 25
+
+This will create a file "plot.mp4" showing the complex function z^2 + 0 ... z^2 + 25
+
+--}
 
 animate fx = animate' fx 0 where
-  animate' [] n = putStrLn $ "Done, " ++ show n ++ " frames generated."
+  animate' [] n = do
+                  video <- callCommand $ "ffmpeg -r 30 -f image2 -s 1920x1080 -start_number 0 -i ./pics/frame%d.png -vframes " ++ show (n-1) ++ " -vcodec libx264 -crf 15  -pix_fmt yuv420p plot.mp4"
+                  return video
+
   animate' (f:fs) n = do
                     current <- plot (f . square) 0.125 (-10) (10)
                     return current
