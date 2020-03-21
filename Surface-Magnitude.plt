@@ -172,4 +172,7 @@ data = "data.txt"
 ticslevel = 0
 ## Last datafile plotted: "data.txt"
 splot data u 1:2:3:4 with points pointtype 28 lw 5 palette notitle
+set term png size 1920,1080
+set output "pics/output.png"
+replot
 #    EOF

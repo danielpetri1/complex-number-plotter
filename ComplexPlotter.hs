@@ -2,6 +2,7 @@ module ComplexPlotter where
 
 import Data.Complex
 import System.IO()
+import System.Process
 
 -- Converts a number to a complex number
 toComplex n = n :+ 0
@@ -44,15 +45,11 @@ complexPoly2 z = cadd ((two `cmul` z) `cadd` two) (cmul two (square z))
 
 format (a, b, c, d) = show a ++"\t" ++ show b ++"\t" ++ show c ++ "\t" ++ show d ++ "\n\n"
 
-main f = do
-          putStr "Step size: "
-          ss <- readLn :: IO Double
-          putStr "a: "
-          a <- readLn :: IO Double
-          putStr "b: "
-          b <- readLn :: IO Double
-
+plot f ss a b = do
           let axis = [a, a+ss..b]
-          let plot = [(x, y, magnitude $ f (x :+ y), phase $ f (x :+ y)) | x <- axis, y <- axis]
+          let graph = [(x, y, magnitude $ f (x :+ y), phase $ f (x :+ y)) | x <- axis, y <- axis]
 
-          writeFile "data.txt" $ foldr (++) "" $ map format plot
+          writeFile "data.txt" $ foldr (++) "" $ map format graph
+
+          gnuplot <- callCommand "gnuplot \"Surface-Magnitude.plt\""
+          return gnuplot
