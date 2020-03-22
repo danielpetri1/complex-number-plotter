@@ -1,6 +1,6 @@
 # complex plotter
 
-This is a program not really meant for widespread use that I've written for upcoming videos on my educational YouTube channel [Guru da Ciência](https://youtube.com/danielpetri)
+This is a program not really meant for widespread use that I've written for upcoming videos on my educational YouTube channel [Guru da Ciência](https://youtube.com/danielpetri).
 
 It renders `.mp4` animations and `.png` plots of complex functions on the real and imaginary plane using `Haskell`, `gnuplot` and `ffmpeg`.
 
