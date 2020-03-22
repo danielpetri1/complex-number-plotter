@@ -1,4 +1,4 @@
-# complex
+# complex plotter
 
 This is a program not really meant for widespread use that I've written for upcoming videos on my educational YouTube channel "Guru da Ciência".
 
