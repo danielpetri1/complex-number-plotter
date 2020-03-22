@@ -46,7 +46,7 @@ plot f ss a b = do
 
           writeFile "data.txt" $ foldr (++) "" $ map format graph
 
-          gnuplot <- callCommand "gnuplot \"Surface-Phase.plt\""
+          gnuplot <- callCommand "gnuplot \"Surface-Magnitude.plt\""
           return gnuplot
 
 {--
